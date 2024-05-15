@@ -25,12 +25,11 @@ class Parcel(models.Model):
     sender = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="parcel")
     receiver_name = models.CharField(max_length=150)
     receiver_address = models.TextField()
-    courier = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name="courier_parcels", null=True)
+    courier = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="courier_parcels", null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    delivered_at = models.DateTimeField(null=True)
+    delivered_at = models.DateTimeField(null=True, blank=True)
 
 class DeliveryProof(models.Model):
     parcel = models.OneToOneField(Parcel, on_delete=models.CASCADE)
     image = models.ImageField()
     timestamp = models.DateTimeField(auto_now_add=True)
-
