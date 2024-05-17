@@ -11,6 +11,7 @@ router = DefaultRouter()
 router.register(r"users", CustomUserViewSet)
 router.register(r"parcels", ParcelViewSet)
 router.register(r"proofs", DeliveryProofViewSet)
+router.register(r"courier", CuorierParcelsViewSet, basename="courier")
 
 urlpatterns = [
     path('admin/', admin.site.urls),

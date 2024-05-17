@@ -57,3 +57,17 @@ class DeliveryProofPermissions(BasePermission):
                 return True
             else: 
                 return False
+
+class IsCourier(BasePermission):
+
+    def has_permission(slef, request, view):
+        if request.user.is_authenticated:
+            if request.user.role == "courier":
+                if request.method in SAFE_METHODS:
+                    return True
+                else: 
+                    return False
+            else: 
+                return False
+        else: 
+            return False
